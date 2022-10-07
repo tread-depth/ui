@@ -6,7 +6,7 @@ const global = (theme) => ({
     body: {
         margin: 0,
         fontFamily: 'Nunito, sans-serif',
-        background: theme.colors.gray[0],
+        // background: theme.colors.gray[0],
         color: theme.colors.dark[7],
         WebkitFontSmoothing: 'antialiased',
         MozOsxFontSmoothing: 'grayscale',

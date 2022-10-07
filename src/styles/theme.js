@@ -3,19 +3,20 @@ const theme = {
     headings: {
         fontFamily: 'Josefin Sans, sans-serif',
     },
-    primaryColor: 'green',
+    primaryColor: 'blue',
     colors: {
-        green: [
-            '#E8FDF8',
-            '#BEF9EB',
-            '#94F5DD',
-            '#6AF1D0',
-            '#40EDC3',
-            '#16E9B6',
-            '#11BB91',
-            '#0D8C6D',
-            '#095D49',
-            '#042F24',
+        blue: [
+            '#E9EDFB',
+            '#C2CCF4',
+            '#9BAAED',
+            '#7489E7',
+            '#4D68E0',
+            '#2647D9',
+            '#2647D9',
+            // '#1F39AD',
+            '#172B82',
+            '#0F1D57',
+            '#080E2B',
         ],
     },
     spacing: {
