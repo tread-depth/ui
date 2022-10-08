@@ -53,6 +53,7 @@ const Login = () => {
         if (error) {
             form.setErrors({ email: 'Invalid email or password' });
         } else {
+            form.reset();
             navigate(state?.path || '/dashboard');
         }
     };

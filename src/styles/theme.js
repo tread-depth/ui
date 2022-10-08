@@ -1,7 +1,8 @@
 const theme = {
     fontFamily: 'Nunito, sans-serif',
     headings: {
-        fontFamily: 'Josefin Sans, sans-serif',
+        fontFamily: 'Poppins, sans-serif',
+        // fontFamily: 'Josefin Sans, sans-serif',
     },
     primaryColor: 'blue',
     colors: {
