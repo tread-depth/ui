@@ -3,46 +3,54 @@ import {
     createStyles,
     Box,
     TextInput,
+    NumberInput,
     Title,
     Button,
     Breadcrumbs,
 } from '@mantine/core';
 import { useForm, joiResolver } from '@mantine/form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Joi from 'joi';
 
 import Breadcrumb from '../../components/Breadcrumb';
-import { useFleet } from '../../contexts/fleet';
+import { useTruck } from '../../contexts/truck';
 
 const useStyles = createStyles((theme) => ({
     container: {},
 }));
 
-const FleetCreate = () => {
+const TruckCreate = () => {
     const { classes } = useStyles();
-    const { createFleet } = useFleet();
+    const { createTruck } = useTruck();
+    const { fleetId } = useParams();
     const navigate = useNavigate();
 
     const schema = Joi.object({
         name: Joi.string().required(),
+        mileage: Joi.number().required(),
+        axle: Joi.string().allow(''),
+        application: Joi.string().allow(''),
     });
 
     const form = useForm({
         initialValues: {
             name: '',
+            mileage: '',
+            axle: '',
+            application: '',
         },
 
         schema: joiResolver(schema),
     });
 
     const handleCreate = async (values) => {
-        const error = await createFleet(values);
+        const error = await createTruck({ fleetId, ...values });
 
         if (error) {
-            form.setErrors({ email: 'Invalid fleet name' });
+            form.setErrors({ email: 'Invalid truck name' });
         } else {
             form.reset();
-            navigate('/dashboard');
+            navigate(-1);
         }
     };
 
@@ -53,15 +61,33 @@ const FleetCreate = () => {
             </Breadcrumbs>
 
             <Title order={2} mb="md" mt="md">
-                Create Fleet
+                Create Truck
             </Title>
 
             <form onSubmit={form.onSubmit(handleCreate)}>
                 <TextInput
                     mb="md"
                     label="Name"
-                    placeholder="STTC Fleet A"
+                    placeholder="STTC Truck A"
                     {...form.getInputProps('name')}
+                />
+                <NumberInput
+                    mb="md"
+                    label="mileage"
+                    placeholder="12350"
+                    {...form.getInputProps('mileage')}
+                />
+                <TextInput
+                    mb="md"
+                    label="Axle"
+                    placeholder="S4.D4"
+                    {...form.getInputProps('axle')}
+                />
+                <TextInput
+                    mb="md"
+                    label="Application"
+                    placeholder="Long Haul"
+                    {...form.getInputProps('application')}
                 />
                 <Button fullWidth mt="md" ml="auto" type="submit">
                     Submit
@@ -71,4 +97,4 @@ const FleetCreate = () => {
     );
 };
 
-export default FleetCreate;
+export default TruckCreate;

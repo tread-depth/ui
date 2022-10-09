@@ -24,6 +24,32 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
+const Fleet = (props) => {
+    const { classes } = useStyles();
+    const { fleet } = props;
+    const navigate = useNavigate();
+
+    const handleFleetClick = () => {
+        navigate(`/dashboard/fleet/${fleet.id}`);
+    };
+
+    return (
+        <Box
+            key={fleet.id}
+            className={classes.fleet}
+            mb="sm"
+            p="sm"
+            onClick={handleFleetClick}
+        >
+            {fleet.name}
+            {/* <Box ml="auto">
+                10
+                <FontAwesomeIcon className={classes.icon} icon={faTruck} />
+            </Box> */}
+        </Box>
+    );
+};
+
 const Fleets = () => {
     const { classes } = useStyles();
     const { getFleets, fleets } = useFleet();
@@ -47,19 +73,7 @@ const Fleets = () => {
             </Box>
 
             {fleets.length > 0 &&
-                fleets.map((fleet) => (
-                    <Box className={classes.fleet} mb="sm" p="sm">
-                        {fleet.name}
-
-                        <Box ml="auto">
-                            10
-                            <FontAwesomeIcon
-                                className={classes.icon}
-                                icon={faTruck}
-                            />
-                        </Box>
-                    </Box>
-                ))}
+                fleets.map((fleet) => <Fleet fleet={fleet} />)}
         </Box>
     );
 };

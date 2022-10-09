@@ -1,12 +1,13 @@
 import React from 'react';
 import { createStyles } from '@mantine/core';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
     breadcrumb: {
         fontSize: 14,
         fontWeight: 'bold',
         color: theme.colors.gray[6],
+        textDecoration: 'underline',
 
         '&:active': {
             color: theme.colors.blue,
@@ -16,12 +17,16 @@ const useStyles = createStyles((theme) => ({
 
 const Breadcrumb = (props) => {
     const { classes } = useStyles();
-    console.log(props);
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(props.to);
+    };
 
     return (
-        <Link className={classes.breadcrumb} to={props.to}>
+        <div className={classes.breadcrumb} onClick={handleClick}>
             {props.label}
-        </Link>
+        </div>
     );
 };
 
